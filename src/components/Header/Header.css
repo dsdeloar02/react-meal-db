@@ -1,41 +1,8 @@
-.navBarWrapper{
-   background-color: darkgreen;
-}
-.navBar{
-    width: 80%;
-    margin: 0% auto;
-    display: flex;
-    justify-content: space-between;    
-}
 .navLogo{
     width: 40%;
     color: #fff;
 }
-.navItem{
-    width: 60%;    
-}
-.navItem ul{
-    display: flex;
-    padding-left: 0%;
-    justify-content: right;
-    margin: 26px 0px;
-}
-.navItem ul li{
-    list-style: none;
-    padding: 4px 19px;
-    align-items: center;
-    display: flex;
-    font-size: 20px;
-    color: #fff;
-    margin: 0px 15px;
-    justify-content: center;
-    transition: all 0.2s ease-in;
-}
-.navItem ul li a{
-    text-decoration: none;
-    color: #fff;
-}
-.navItem ul li:hover{
-    background: #112207;
-    transition: all 0.2s ease-in;
-}
+/* .active{
+    background-color: aquamarine;
+} */
+
