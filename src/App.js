@@ -10,6 +10,8 @@ import {getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOu
 import { useState } from 'react';
 import LogIn from './components/LogIn/LogIn';
 import Register from './components/Register/Register';
+import Cart from './components/Cart/Cart';
+import PrivateRoute from './Routes/PrivateRoute';
 
 const auth = getAuth(app);
 
@@ -73,6 +75,10 @@ function App() {
           path: "/about",
           element: <About></About>,
         },{
+          path : '/carts',
+          element : <PrivateRoute><Cart></Cart></PrivateRoute>
+        },
+        {
           path : '/login',
           element:<LogIn></LogIn>
         },{

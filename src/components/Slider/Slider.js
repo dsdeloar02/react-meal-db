@@ -3,8 +3,7 @@ import fishOne from '../../images/fishOne.jfif';
 import fishTwo from '../../images/fishTwo.jpg';
 import fishThree from '../../images/fishThree.jpg';
 
-const Slider = ({product}) => {
-    const { idMeal, strMealThumb, strMeal } = product;
+const Slider = () => {
     return (
         <>
         <div id="slide1" className="carousel-item relative w-full">

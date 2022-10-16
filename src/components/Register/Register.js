@@ -1,18 +1,43 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import gogle from '../../images/gogle.jpg';
 import github from '../../images/githun.png';
 import facebook from '../../images/facebook.png';
+import { AuthContext } from '../../UserContext/UserContext';
 
 const Register = () => {
+
+  const { createUser, signInWithGoogle } = useContext(AuthContext);
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password)
+    console.log(name, email, password);
+    createUser( email, password)
+    .then(result => {
+      const user = result.user;
+      form.reset();
+      console.log('user', user)
+    })
+    .catch(error =>{
+      console.error(error)
+    })
   }
+
+  const handleSignInGoogle = () => {
+    signInWithGoogle()
+    .then(result => {
+      const user = result.user;
+      console.log(user)
+    })
+    .catch(err => console.error(err))
+  }
+
+
+
     return (
         <div className="hero min-h-screen bg-[#242933]">
         <div className="flex justify-between flex-col lg:w-4/5  lg:flex-row-reverse">
@@ -58,7 +83,7 @@ const Register = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary"> Register Now</button>
               </div>
 
               <div className="flex justify-between">
@@ -75,7 +100,7 @@ const Register = () => {
             </div>
             <p className="text-[#b7b7b7] text-center" ><small>Or Sign In With</small></p>
             <div className="flex w-1/2 my-3 justify-between mx-auto">
-                <button className="text-white">
+                <button onClick={handleSignInGoogle} className="text-white">
                   <img className="w-8 h-8 rounded-md" src={gogle} alt="" />
                 </button>
                 <button className="text-white">

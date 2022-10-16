@@ -1,15 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import gogle from '../../images/gogle.jpg';
 import github from '../../images/githun.png';
 import facebook from '../../images/facebook.png';
+import { AuthContext } from "../../UserContext/UserContext";
 
 const LogIn = () => {
+
+  const navigate = useNavigate();
+  const { signIn } = useContext(AuthContext);
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    signIn(email, password)
+    .then(result => {
+      const user = result.user;
+      navigate('/');
+      form.reset();
+      console.log("logIn succes", user)
+    })
+    .catch(err => {
+      console.error(err);
+    })
     console.log(email, password)
   }
   return (

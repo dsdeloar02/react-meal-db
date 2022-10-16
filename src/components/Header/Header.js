@@ -1,22 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import "./Header.css";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../UserContext/UserContext";
 
-const Header = ({
-  hadleGoogleSignIn,
-  handleSignOut,
-  user,
-  handleGithubSignIn,
-}) => {
+const Header = () => {
+
+  const { user, logOut }  = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    logOut()
+    .then(() => { })
+    .catch(err => console.error(err));
+  }
+
+  console.log('context', user)
+
   let Links = [
     { name: "Home", NavLink: "/" },
     { name: "About", NavLink: "/about" },
     { name: "Products", NavLink: "/products" },
-    { name: "Log In", NavLink: "/login" },
+    { name: "Cart", NavLink: "/carts" },
+    // { name: "Log In", NavLink: "/login" },
   ];
 
   let [open, setOpen] = useState(false);
+  let [popen, setPopen] = useState(false)
 
   return (
     <div className="navBarWrapper bg-[#2A303C]">
@@ -33,10 +42,26 @@ const Header = ({
 
         <ul className={`text-white bg-[#2A303C] py-5 md:py-0 md:flex md:justify-end md:items-center absolute w-full left-0 md:static  transition-all duration-500 ease-in ${open ? 'top-20' : 'top-[-500px]'}  `}>
           {Links.map((link) => (
-            <li className={`mx-2 py-2 px-4 hover:bg-[#6419E6] `}>
+            <li className={`mx-2 py-2 px-4 hover:bg-[#6419E6]`}>
               <NavLink to={link.NavLink}>{link.name}</NavLink>
             </li>
           ))}
+          
+          {
+            user?.email ? 
+              <div onClick={() =>setPopen(!popen)} className='cursor-pointer' >
+                <span className="w-10 h-10 flex justify-center items-center bg-green-600 text-white rounded-full" >
+                    {user?.email.substring(0,2)}
+                </span>
+                <div className={`absolute ${popen ? 'top-[72px] right-[34px]' : 'top-[-500px]'}`}>
+                  <ul className="bg-black py-4 px-3 rounded-md">
+                    <li><button className="btn btn-active btn-secondary">Profile</button></li>  
+                    <li className="my-3" ><button onClick={handleSignOut} className="btn btn-active btn-accent">Log Out</button></li>  
+                  </ul>  
+                </div> 
+              </div>
+              : <button className="btn btn-primary"><NavLink to='/login'>Log In </NavLink></button>
+          }
 
           {/* <li>
               {user.uid ? (

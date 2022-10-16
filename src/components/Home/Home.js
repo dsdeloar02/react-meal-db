@@ -7,10 +7,10 @@ import "./Home.css";
 const Home = ({ user }) => {
   const totalProducts = useLoaderData().meals;
   const products = totalProducts.slice(3)
-  console.log(totalProducts.slice(3));
+  // console.log(totalProducts.slice(3));
   return (
     <div>
-      <div className="my-5">
+      <div className="">
         <div className="carousel w-full h-[500px]">
           {
             products.map( product => <Slider
