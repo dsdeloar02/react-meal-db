@@ -1,7 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import gogle from '../../images/gogle.jpg';
+import github from '../../images/githun.png';
+import facebook from '../../images/facebook.png';
 
 const Register = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password)
+  }
     return (
         <div className="hero min-h-screen bg-[#242933]">
         <div className="flex justify-between flex-col lg:w-4/5  lg:flex-row-reverse">
@@ -12,13 +23,14 @@ const Register = () => {
             </p>
           </div>
           <div className="card mx-auto w-full  max-w-sm shadow-2xl bg-[#2A303C]">
-            <div className="card-body ">
+            <form onSubmit={handleSubmit} className="card-body ">
               <div className="form-control ">
                 <label className="label">
                   <span className="label-text text-[#b7b7b7]">Your name</span>
                 </label>
                 <input
                   type="text"
+                  name='name'
                   placeholder="Enter your name"
                   className="input input-bordered"
                 />
@@ -28,7 +40,8 @@ const Register = () => {
                   <span className="label-text text-[#b7b7b7]">Email</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
+                  name='email'
                   placeholder="email"
                   className="input input-bordered"
                 />
@@ -38,7 +51,8 @@ const Register = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
+                  name='password'
                   placeholder="password"
                   className="input input-bordered"
                 />
@@ -59,8 +73,20 @@ const Register = () => {
                   </Link>
                 </label>
             </div>
-
+            <p className="text-[#b7b7b7] text-center" ><small>Or Sign In With</small></p>
+            <div className="flex w-1/2 my-3 justify-between mx-auto">
+                <button className="text-white">
+                  <img className="w-8 h-8 rounded-md" src={gogle} alt="" />
+                </button>
+                <button className="text-white">
+                  <img className="w-8 h-8 rounded-md" src={github} alt="" />
+                </button>
+                <button className="text-white">
+                  <img className="w-8 h-8 rounded-md" src={facebook} alt="" />
+                </button>
             </div>
+
+            </form>
           </div>
         </div>
       </div>

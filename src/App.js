@@ -64,11 +64,10 @@ function App() {
        ></Main>,
       children : [
         {
-          path: "/",          
-          element: <Home user={user} ></Home>,
-        },
-        {
-          path: "/home",          
+          path: "/", 
+          loader: async () => {
+            return fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=fish`)
+          },         
           element: <Home user={user} ></Home>,
         },{
           path: "/about",

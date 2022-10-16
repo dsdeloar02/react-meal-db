@@ -10,7 +10,7 @@ const Header = ({
   handleGithubSignIn,
 }) => {
   let Links = [
-    { name: "Home", NavLink: "/home" },
+    { name: "Home", NavLink: "/" },
     { name: "About", NavLink: "/about" },
     { name: "Products", NavLink: "/products" },
     { name: "Log In", NavLink: "/login" },

@@ -5,6 +5,13 @@ import github from '../../images/githun.png';
 import facebook from '../../images/facebook.png';
 
 const LogIn = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password)
+  }
   return (
     <div className="hero min-h-screen bg-[#242933]">
       <div className="flex justify-between flex-col lg:w-4/5  lg:flex-row-reverse">
@@ -15,15 +22,17 @@ const LogIn = () => {
           </p>
         </div>
         <div className="card  mx-auto w-full  max-w-sm shadow-2xl bg-[#2A303C]">
-          <div className="card-body ">
+          <form onSubmit={handleSubmit} className="card-body ">
             <div className="form-control ">
               <label className="label">
                 <span className="label-text text-[#b7b7b7]">Email</span>
               </label>
               <input
-                type="text"
+                type="email"
                 placeholder="email"
+                name='email'
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -31,9 +40,11 @@ const LogIn = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
+                name='password'
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control mt-6">
@@ -63,7 +74,7 @@ const LogIn = () => {
                   <img className="w-8 h-8 rounded-md" src={facebook} alt="" />
                 </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

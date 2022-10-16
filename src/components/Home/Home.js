@@ -1,12 +1,43 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
+import Product from "../Product/Product";
+import Slider from "../Slider/Slider";
 import "./Home.css";
 
 const Home = ({ user }) => {
-  console.log(user);
+  const totalProducts = useLoaderData().meals;
+  const products = totalProducts.slice(3)
+  console.log(totalProducts.slice(3));
   return (
     <div>
-      <div className="homeContent">
+      <div className="my-5">
+        <div className="carousel w-full h-[500px]">
+          {
+            products.map( product => <Slider
+              key={product.idMeal}
+              product={product}
+              ></Slider> )
+          }
+        </div>
         <div>
+
+        <div className="productsWrapper">
+                <h1 className="font-bold text-3xl mb-3" > All Produts </h1>
+                <div className='productWrapper'>
+                    {
+                        products.map(product => <Product
+                        key={product.idMeal}
+                        product={product}
+                        ></Product> )
+                    }
+                </div>
+                <button className="btn btn-primary mt-5">
+                   Show All
+                </button>
+            </div>
+        </div>
+
+        {/* <div>
           <div
             className="hero min-h-screen"
             style={{
@@ -26,7 +57,7 @@ const Home = ({ user }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div>
           {user.uid && (
